@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новий користувач:</title>
+</head>
+<body>
+<h1>Новий користувач:</h1>
+<form action="#" method="POST" th:action="@{/create}" th:object="${user}">
+    <input type="text" id="name" placeholder="Iмя" th:field="*{name}">
+    <br/>
+    <input type="text" id="surName" placeholder="Фамилiя" th:field="*{surName}">
+    <br/>
+    <input type="number" id="socialNumber" placeholder="Спильнотний номер" th:field="*{socialNumber}">
+    <br/>
+    <button type="submit">Додати</button>
+</form>
+</body>
+</html>

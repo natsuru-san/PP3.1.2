@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Користувач</title>
+</head>
+<body>
+<h1>Зминити користувача:</h1>
+<form action="#" th:method="PATCH" th:action="@{/change}" th:object="${user}">
+    <input type="text" id="id" th:field="${user.id}" th:readonly="true">
+    <br/>
+    <input type="text" id="name" th:field="${user.name}">
+    <br/>
+    <input type="text" id="surName" th:field="${user.surName}">
+    <br/>
+    <input type="number" id="socialNumber" th:field="${user.socialNumber}">
+    <br/>
+    <button type="submit">Зминити!</button>
+</form>
+</body>
+</html>
