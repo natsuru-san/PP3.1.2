@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Новий користувач:</h1>
-<form action="#" method="POST" th:action="@{/create}" th:object="${user}">
+<form action="#" method="POST" th:action="@{/admin/create}" th:object="${user}">
     <input type="text" id="name" placeholder="Iмя" th:field="*{name}">
     <br/>
     <input type="text" id="surName" placeholder="Фамилiя" th:field="*{surName}">

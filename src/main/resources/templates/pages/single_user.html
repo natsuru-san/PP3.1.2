@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Зминити користувача:</h1>
-<form action="#" th:method="PATCH" th:action="@{/change}" th:object="${user}">
+<form action="#" th:method="PATCH" th:action="@{/admin/change}" th:object="${user}">
     <input type="text" id="id" th:field="${user.id}" th:readonly="true">
     <br/>
     <input type="text" id="name" th:field="${user.name}">

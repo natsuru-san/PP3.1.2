@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.natsuru.mvcboot.service.RoleService;
 import ru.natsuru.mvcboot.service.UserService;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,49 +19,49 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("/")
+    @GetMapping("/admin")
     public String getAllUsers(Model model) {
         model.addAttribute("listUsers", userService.getListUsers());
         return "/pages/users.html";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/new")
     public String addNewUser(Model model) {
         model.addAttribute("user", new User());
         return "/pages/new.html";
     }
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     @Transactional
     public String creatingNewUser(@ModelAttribute User user, @RequestParam("role") int role) {
         Set<Role> updatedRoles = new HashSet<>();
         updatedRoles.add(roleService.getAllRoles().get(role - 1));
         user.setRoles(updatedRoles);
         userService.addUser(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     //Цей метод контролера треба використовувати через кнопку в шаблоні html, інакше помилка #405
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     @Transactional
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/admin/update/{id}")
     @Transactional
     public String updateUser(@PathVariable long id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "/pages/single_user.html";
     }
 
-    @PatchMapping("/change")
+    @PatchMapping("/admin/change")
     @Transactional
     public String changeUser(@ModelAttribute User user, @RequestParam("role") int role) {
         Set<Role> updatedRoles = new HashSet<>();
         updatedRoles.add(roleService.getAllRoles().get(role - 1));
         user.setRoles(updatedRoles);
         userService.changeUser(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }
