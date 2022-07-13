@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserObjectByLogin(String login) {
+        return userDao.pullUserByName(login);
+    }
+
+    @Override
     public Set<Role> getRolesFromUser(long id) {
         return userDao.pullRolesFromUser(id);
     }

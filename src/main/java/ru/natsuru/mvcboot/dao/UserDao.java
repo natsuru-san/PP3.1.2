@@ -13,4 +13,5 @@ public interface UserDao {
     void updateUser(User user);
     User pullUser(long id);
     Set<Role> pullRolesFromUser(long id);
+    User pullUserByName(String login);
 }

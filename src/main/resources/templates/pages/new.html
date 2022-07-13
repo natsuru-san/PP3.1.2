@@ -6,6 +6,16 @@
     <title>Новий користувач:</title>
 </head>
 <body>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Вийти"/>
+</form>
+<form th:method="GET" th:action="@{/admin}">
+    <input type="submit" value="На головну сторінку (admin)"/>
+</form>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="На головну сторінку"/>
+</form>
+<br/>
 <h1>Новий користувач:</h1>
 <form action="#" method="POST" th:action="@{/admin/create}" th:object="${user}">
     <input type="text" id="name" placeholder="Iмя" th:field="*{name}">

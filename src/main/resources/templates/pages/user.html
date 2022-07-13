@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Користувач (про мене)</title>
+</head>
+<body>
+<button disabled>Представитися системі</button>
+<button disabled>Вийти (якщо залогинен)</button>
+<button disabled>Показати дані про себе самого</button>
+<form method="GET" action="/">
+    <input type="submit" value="На головну сторінку"/>
+</form>
+<form method="GET" action="/admin">
+    <input type="submit" value="Показати дані про всех (якщо админ)"/>
+</form>
+<br/>
+<form action="#" th:method="GET" th:action="@{/user}" th:object="${owner}">
+    <a th:text="${owner.toString()}">Some text</a>
+</form>
+</body>
+</html>

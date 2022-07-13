@@ -5,6 +5,14 @@
     <title>Користувачи:</title>
 </head>
 <body>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Вийти"/>
+</form>
+<button disabled>На головну сторінку (admin)</button>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="На головну сторінку"/>
+</form>
+<br/>
 <h1>Користувачи:</h1>
 <a href="/admin/new">Додати нового</a>
 <div th:each="user : ${listUsers}">

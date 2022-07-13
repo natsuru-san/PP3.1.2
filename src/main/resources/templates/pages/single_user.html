@@ -5,6 +5,16 @@
     <title>Користувач</title>
 </head>
 <body>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Вийти"/>
+</form>
+<form th:method="GET" th:action="@{/admin}">
+    <input type="submit" value="На головну сторінку (admin)"/>
+</form>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="На головну сторінку"/>
+</form>
+<br/>
 <h1>Зминити користувача:</h1>
 <form action="#" th:method="PATCH" th:action="@{/admin/change}" th:object="${user}">
     <input type="text" id="id" th:field="${user.id}" th:readonly="true">

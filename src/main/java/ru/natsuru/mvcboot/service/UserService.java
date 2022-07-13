@@ -12,5 +12,6 @@ public interface UserService {
     void deleteUser(long id);
     void changeUser(User user);
     User getUser(long id);
+    User getUserObjectByLogin(String login);
     Set<Role> getRolesFromUser(long id);
 }
