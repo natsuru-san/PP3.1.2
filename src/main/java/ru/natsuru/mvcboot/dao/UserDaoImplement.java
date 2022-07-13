@@ -4,8 +4,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import ru.natsuru.mvcboot.model.Role;
 import ru.natsuru.mvcboot.model.User;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -34,7 +37,9 @@ public class UserDaoImplement implements UserDao {
 
     @Override
     public void removeUser(long id) {
-        manager.remove(pullUser(id));
+        Query query = manager.createQuery("DELETE FROM User User WHERE id=:id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 
     @Override
@@ -45,5 +50,10 @@ public class UserDaoImplement implements UserDao {
     @Override
     public User pullUser(long id) {
         return manager.find(User.class, id);
+    }
+
+    @Override
+    public Set<Role> pullRolesFromUser(long id) {
+        return pullUser(id).getRoles();
     }
 }

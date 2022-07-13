@@ -1,17 +1,26 @@
 package ru.natsuru.mvcboot.controller;
 
+import ru.natsuru.mvcboot.model.Role;
 import ru.natsuru.mvcboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.natsuru.mvcboot.service.RoleService;
 import ru.natsuru.mvcboot.service.UserService;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping("/")
     public String getAllUsers(Model model) {
@@ -26,7 +35,10 @@ public class UserController {
     }
     @PostMapping("/create")
     @Transactional
-    public String creatingNewUser(@ModelAttribute User user) {
+    public String creatingNewUser(@ModelAttribute User user, @RequestParam("role") int role) {
+        Set<Role> updatedRoles = new HashSet<>();
+        updatedRoles.add(roleService.getAllRoles().get(role - 1));
+        user.setRoles(updatedRoles);
         userService.addUser(user);
         return "redirect:/";
     }
@@ -48,7 +60,10 @@ public class UserController {
 
     @PatchMapping("/change")
     @Transactional
-    public String changeUser(@ModelAttribute User user) {
+    public String changeUser(@ModelAttribute User user, @RequestParam("role") int role) {
+        Set<Role> updatedRoles = new HashSet<>();
+        updatedRoles.add(roleService.getAllRoles().get(role - 1));
+        user.setRoles(updatedRoles);
         userService.changeUser(user);
         return "redirect:/";
     }

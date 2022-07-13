@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +14,14 @@
     <br/>
     <input type="number" id="socialNumber" placeholder="Спильнотний номер" th:field="*{socialNumber}">
     <br/>
+    <input type="text" id="pass" th:field="${user.pass}">
+    <br/>
+    <label>Roles:
+        <select size="2" multiple th:name="role" required="required">
+            <option selected="selected" th:value="2">USER</option>
+            <option th:value="1">ADMIN</option>
+        </select>
+    </label>
     <button type="submit">Додати</button>
 </form>
 </body>

@@ -15,6 +15,14 @@
     <br/>
     <input type="number" id="socialNumber" th:field="${user.socialNumber}">
     <br/>
+    <input type="text" id="pass" th:field="${user.pass}">
+    <br/>
+    <label>Roles:
+        <select size="2" multiple th:name="role" required="required">
+            <option selected="selected" th:value="2">USER</option>
+            <option th:value="1">ADMIN</option>
+        </select>
+    </label>
     <button type="submit">Зминити!</button>
 </form>
 </body>
