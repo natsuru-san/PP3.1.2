@@ -45,12 +45,19 @@ public class UserDaoImplement implements UserDao {
     }
     @Override
     public void updateUser(User user) {
-        manager.merge(user);
+        if (isExistUserById(user.getId())) {
+            manager.merge(user);
+        }
     }
 
     @Override
     public User pullUser(long id) {
-        return manager.find(User.class, id);
+        User user = manager.find(User.class, id);
+        if (user == null) {
+            user = new User("Not defined", "Not defined", -1);
+            user.setId(-1L);
+        }
+        return user;
     }
 
     @Override
@@ -63,5 +70,8 @@ public class UserDaoImplement implements UserDao {
         TypedQuery<User> query = manager.createQuery("FROM User user WHERE user.name=:name", User.class);
         query.setParameter("name", login);
         return query.getResultList().stream().findFirst().orElse(null);
+    }
+    private boolean isExistUserById(long id) {
+        return manager.find(User.class, id) != null;
     }
 }
