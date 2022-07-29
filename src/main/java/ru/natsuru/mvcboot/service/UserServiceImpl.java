@@ -20,11 +20,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String name, String surName, int socialNumber) {
-        userDao.putUser(name, surName, socialNumber);
-    }
-
-    @Override
     public void addUser(User user) {
         userDao.putUser(user);
     }

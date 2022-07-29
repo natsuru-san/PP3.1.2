@@ -20,11 +20,9 @@
     <form th:method="DELETE" th:action="@{'/admin/delete/' + ${user.getId()} }">
         <input type="submit" value="Видалити"/>
     </form>
-<!--    <a th:method="DELETE" th:href="@{'/delete/' + ${user.getId()} }">Видалити</a>-->
     <form th:method="GET" th:action="@{'/admin/update/' + ${user.getId()} }">
         <input type="submit" value="Зминити"/>
     </form>
-<!--    <a th:method="GET" th:href="@{'/update/' + ${user.getId()} }">Зминити</a>-->
 </div>
 </body>
 </html>
